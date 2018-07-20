@@ -1,0 +1,51 @@
+html,
+body {
+	height: 100%;
+}
+
+.mui-bar-nav {
+	/*box-shadow: 0 1px 6px #aaa;*/
+	box-shadow: none;
+}
+
+.mui-bar {
+	background: #20b2aa;
+}
+
+.mui-icon-bars {
+	color: #555555;
+}
+
+.mui-icon-bars:active {
+	color: yellowgreen;
+}
+
+.mui-icon-left-nav {
+	color: #555555;
+}
+
+.mui-icon-info-filled {
+	color: #dcdcdc;
+}
+
+.mui-title {
+	color: #555555;
+}
+
+.mui-content {
+	padding-top: 15px;
+	color: #777777;
+}
+
+ul {
+	margin-top: 0px !important;
+}
+
+.mui-off-canvas-left {
+	background: darkslategrey;
+}
+
+.btn-group {
+	margin: 10px auto;
+	padding: 8px 10px;
+}

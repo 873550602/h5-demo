@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>video方法和事件介绍</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.3.7.css"/>
+		<style type="text/css">
+			body{
+				padding:18px;
+			}
+		</style>
+	</head>
+	<body>
+		<video id="video" src="../video/mov_bbb.mp4" width="320" height="176"></video>
+		<div class="control-bar">
+			<button class="btn btn-primary btn-sm" onclick="play()">播放</button>
+			<button class="btn btn-primary btn-sm" onclick="pause()">暂停</button>
+			<button class="btn btn-primary btn-sm" onclick="load()">重新播放</button>
+		</div>
+		<script type="text/javascript">
+		    /*
+		    *作者：873550602@qq.com
+        	*时间：2017-12-18
+        	*描述:video属性、事件、方法介绍 
+		    * 一、方法
+		    * play():播放视频
+		    * pause():暂停播放
+		    * load():重新加载
+		    * canPlayType():浏览器是否能播放指定的音频/视频类型
+		    * 语法：audio|video.canPlayType(type)
+		    * canPlayType() 方法可返回下列值之一
+		    * "probably" - 浏览器最可能支持该音频/视频类型
+		    * "maybe" - 浏览器也许支持该音频/视频类型
+		    * "" -（空字符串）浏览器不支持该音频/视频类型
+		    */
+		    var video = document.getElementById("video");
+			function play(){
+		        console.log(video.videoHeight)
+		        console.log(video.height)
+				video.play();
+			}
+			function pause(){
+				video.pause();
+			}
+			function load(){
+				video.load();
+				video.play();
+			}
+		</script>
+	</body>
+</html>

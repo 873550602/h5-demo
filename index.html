@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/my_extra_icon.css" />
+		<link rel="stylesheet" type="text/css" href="css/commom.css" />
+		<script type="text/javascript" charset="utf-8">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var webview = plus.webview;
+					var navigator = plus.navigator;
+
+					//绑定a标签监听事件
+					var a = document.getElementsByClassName("page-to");
+					for(i = 0; i < a.length; i++) {
+						a[i].addEventListener('tap', function() {
+							pageTo(this.id, this.id);
+						})
+					}
+
+					//打开关于页面
+					document.getElementById("page-to-about").addEventListener('tap', function() {
+						$.openWindow({
+							url: 'template/application_info.html',
+							id: 'template/application_info.html',
+							styles: {
+								statusbar: {
+									background: '#778899'
+								}
+							},
+							show: {
+								aniShow: 'fade-in',
+							}
+						})
+					})
+				})
+			})(mui)
+		</script>
+	</head>
+
+	<body>
+		<!-- 主界面不动、菜单移动 -->
+		<!-- 侧滑导航根容器 -->
+		<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<!-- 菜单容器 -->
+			<aside class="mui-off-canvas-left" id="offCanvasSide">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!-- 菜单具体展示内容 -->
+						
+					</div>
+				</div>
+			</aside>
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 主页面标题 -->
+				<header class="mui-bar mui-bar-nav">
+					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+					<h1 class="mui-title">H5+</h1>
+					<a id="page-to-about" class="mui-icon mui-icon-info-filled mui-pull-right"></a>
+				</header>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!-- 主界面具体展示内容 -->
+						<div class="mui-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a id="template/accelerometer.html" class="mui-navigate-right page-to">
+										Accelerometer（加速器）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/audio.html">
+										Audio（音频）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/barcode.html">
+										Barcode（条码）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/camera.html">
+										Camera（相机）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/contacts.html">
+										Contacts（通讯录）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/device.html">
+										Device（设备信息）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/downloader.html">
+										Downloader（下载任务）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/messaging.html">
+										Messaging（通讯功能）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/native_obj.html">
+										NativeObj（系统原生对象）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right page-to" id="template/navigator.html">
+										Navigator（浏览器运行环境信息）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a id="template/webview.html" class="mui-navigate-right page-to">
+										Webview（应用窗口界面）
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a id="template/test.html" class="mui-navigate-right page-to">
+										Test（测试）
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

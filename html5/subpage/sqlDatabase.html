@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML5 Web SQL 数据库</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.3.7.css" />
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="status" name="status">状态信息</div>
+		<script type="text/javascript">
+			var e_id = "3",
+				e_log = "test";
+			//打开已存在的数据库，如果数据库不存在，则会创建一个新的数据库
+			var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024, function() {
+				console.log("数据库新建成功！");
+			});
+			if(db) {
+				db.transaction(function(tx) {
+					tx.executeSql("create table IF NOT EXISTS LOGS (id unique, log)");
+					tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "菜鸟教程")');
+					tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "www.runoob.com")');
+					tx.executeSql('INSERT INTO LOGS (id,log) VALUES (?, ?)', [e_id, e_log]); //动态插入
+				})
+				db.transaction(function(tx) {
+					tx.executeSql('SELECT * FROM LOGS', [], function(tx, results) {
+						var len = results.rows.length,
+							i;
+						msg = "<p>查询记录条数: " + len + "</p>";
+						document.querySelector('#status').innerHTML += msg;
+
+						for(i = 0; i < len; i++) {
+							msg = "<p><b>" + results.rows.item(i).id + "</b> <span>"+results.rows.item(i).log+"</span></p>";
+							document.querySelector('#status').innerHTML += msg;
+						}
+
+					}, null);
+				});
+			} else {
+				console.log("打开数据库出错！");
+			}
+		</script>
+	</body>
+
+</html>

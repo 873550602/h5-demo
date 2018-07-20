@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+	<script type="text/javascript">
+		(function($) {
+			$.init();
+			$.plusReady(function() {
+				var messaging = plus.messaging;
+				document.getElementById("send-message").addEventListener('tap',function (){
+					var message_sms = messaging.createMessage(messaging.TYPE_SMS);
+					message_sms.to = ['10086'];
+					message_sms.body = 'This is HTML5 Plus example test message';
+					messaging.sendMessage(message_sms);
+				});
+				document.getElementById("send-mms").addEventListener('tap',function (){
+					var message_mms = messaging.createMessage(messaging.TYPE_MMS);
+					message_mms.to = ['18786608477'];
+					message_mms.body = 'This is a mms';
+					messaging.sendMessage(message_mms);
+				})
+				document.getElementById("send-email").addEventListener('tap',function (){
+					var message_email = messaging.createMessage(messaging.TYPE_EMAIL);
+					message_email.cc = ['873550602@qq.com'];
+					message_email.to = ['873550602@qq.com'];
+					message_email.bcc = ['564646654@qq.com'];
+					message_email.subject = 'test email';  
+					message_email.bodyType = 'html';
+					message_email.body = '<p style="background:yellow">this is a email</p>';
+					messaging.sendMessage(message_email);
+				})
+			})
+		})(mui)
+	</script>
+	<style type="text/css">
+		.btn-group {
+			margin: 10px auto;
+			padding: 8px 10px;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">通讯功能</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button id="send-message" type="button" class="mui-btn mui-btn-yellow mui-btn-block">发送消息</button>
+				<button id="send-mms" type="button" class="mui-btn mui-btn-yellow mui-btn-block">发送彩信</button>
+				<button id="send-email" type="button" class="mui-btn mui-btn-yellow mui-btn-block">发送邮件</button>
+			</div>
+		</div>
+	</body>
+
+</html>

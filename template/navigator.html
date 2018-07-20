@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var navigator = plus.navigator;
+					document.getElementById("check-permission").addEventListener('tap', function() {
+						var pp = navigator.checkPermission('LOCATION');
+						switch(pp) {
+							case 'authorized':
+								plus.nativeUI.alert('已开启定位权限');
+								break;
+							case 'denied':
+								plus.nativeUI.alert('已关闭定位权限');
+								break;
+							case 'undetermined':
+								plus.nativeUI.alert('未确定定位权限');
+								break;
+							case 'unknown':
+								plus.nativeUI.alert('无法查询定位权限');
+								break;
+							default:
+								plus.nativeUI.alert('不支持定位权限');
+								break;
+						}
+
+					})
+				})
+			})(mui)
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">浏览器运行信息</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button id="check-permission" type="button" class="mui-btn mui-btn-yellow mui-btn-block">运行环境权限</button>
+			</div>
+		</div>
+	</body>
+
+</html>

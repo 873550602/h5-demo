@@ -1,0 +1,236 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "template/accelerometer.html",
+      "template/audio.html",
+      "css/my_extra_icon.css",
+      "template/luyin.html",
+      "template/barcode.html",
+      "template/camera.html",
+      "template/contacts.html",
+      "template/device.html",
+      "template/downloader.html",
+      "template/test.html",
+      "css/commom.css",
+      "home.html",
+      "js/common.js"
+    ],
+    "refer": [
+      "template/accelerometer.html",
+      "template/audio.html",
+      "template/luyin.html",
+      "template/barcode.html",
+      "template/camera.html",
+      "template/contacts.html",
+      "template/device.html",
+      "template/downloader.html",
+      "template/test.html",
+      "template/webview.html",
+      "template/home.html",
+      "home.html",
+      "template/application_info.html",
+      "template/messaging.html",
+      "template/native_obj.html",
+      "template/navigator.html",
+      "template/demo.html"
+    ]
+  },
+  "template/accelerometer.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "index.html",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/audio.html": {
+    "resources": [
+      "index.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "fonts/my_extra_icon.ttf",
+      "css/my_extra_icon.css",
+      "template/luyin.html",
+      "js/common.js",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html",
+      "template/luyin.html"
+    ]
+  },
+  "template/luyin.html": {
+    "resources": [
+      "index.html",
+      "template/audio.html",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/my_extra_icon.ttf",
+      "css/my_extra_icon.css",
+      "js/common.js"
+    ],
+    "refer": [
+      "index.html",
+      "template/audio.html"
+    ]
+  },
+  "template/barcode.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "index.html",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/camera.html": {
+    "resources": [
+      "index.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/contacts.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "index.html",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/device.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "index.html",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/downloader.html": {
+    "resources": [
+      "index.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "template/test.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "index.html",
+      "css/commom.css",
+      "js/common.js"
+    ],
+    "refer": []
+  },
+  "template/webview.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ],
+    "refer": []
+  },
+  "template/home.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/commom.css"
+    ],
+    "refer": []
+  },
+  "home.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css",
+      "template/test.html",
+      "js/mui.min.js",
+      "template/accelerometer.html"
+    ],
+    "refer": [
+      "template/test.html",
+      "template/accelerometer.html",
+      "template/device.html",
+      "template/webview.html",
+      "template/audio.html",
+      "template/contacts.html",
+      "template/native_obj.html",
+      "template/barcode.html",
+      "template/camera.html",
+      "template/downloader.html"
+    ]
+  },
+  "template/native_obj.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ]
+  },
+  "template/application_info.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ]
+  },
+  "template/messaging.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ]
+  },
+  "template/navigator.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/commom.css"
+    ]
+  },
+  "template/demo.html": {
+    "resources": [
+      "img/1.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/commom.css"
+    ]
+  }
+}

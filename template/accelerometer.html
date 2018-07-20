@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				(function($) {
+					var acc = plus.accelerometer;
+					var info = document.getElementById("acc-info");
+					var wid = null;
+					$('.btn-group').on('tap', '.btn-item', function(e) {
+						var el = this;
+						var currClass = el.classList.toString();
+						if(currClass.indexOf('get-curr-divice-info') >= 0) {
+							acc.getCurrentAcceleration(function(a) {
+								info.innerHTML = "X:" + a.xAxis + "<br/>Y:" + a.yAxis + "<br/>Z:" + a.zAxis;
+							}, function(e) {
+								$.alert(e.message);
+							})
+						} else if(currClass.indexOf('watch-divice-info-change') >= 0) {
+							if(wid){
+								return;
+							}
+							wid = acc.watchAcceleration(function(a) {
+								info.innerHTML = "X:" + a.xAxis + "<br/>Y:" + a.yAxis + "<br/>Z:" + a.zAxis;
+							}, function(e) {
+								$.alert(e.message);
+							}, {
+								frequency: 1000
+							})
+						} else if(currClass.indexOf('close-watch-divice') >= 0) {
+							if(wid) {
+								acc.clearWatch(wid);
+								wid = null;
+							}
+						}
+					})
+				})(mui);
+			})
+		</script>
+		<style type="text/css">
+			p {
+				margin: 10px;
+				padding-left: 5px;
+				border-top: 1px solid gainsboro;
+			}
+			
+			.btn-group {
+				margin: 10px;
+				border-radius: 4px;
+			}
+			
+			.btn-group .btn-item {
+				padding: 10px !important;
+				margin: 0px;
+				border-radius: 0px;
+				border-bottom: 0px;
+			}
+			
+			.btn-group .btn-item:first-child {
+				border-radius: 4px 4px 0 0;
+			}
+			
+			.btn-group .btn-item:last-child {
+				border-radius: 0 0 4px 4px;
+				border-bottom: 1px solid dodgerblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">加速器</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block mui-btn-outlined btn-item get-curr-divice-info">获取当前设备的加速度信息</button>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block mui-btn-outlined btn-item watch-divice-info-change">监听设备加速度变化信息</button>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block mui-btn-outlined btn-item close-watch-divice">关闭监听设备加速度信息</button>
+			</div>
+			<p id="acc-info">
+
+			</p>
+		</div>
+	</body>
+
+</html>

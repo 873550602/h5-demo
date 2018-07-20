@@ -1,0 +1,130 @@
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/my_extra_icon.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-1:before { content: "\e672"; }
+
+.icon-stop:before { content: "\e602"; }
+
+.icon-zanting:before { content: "\e608";}
+
+.icon-addpeople_fill:before { content: "\e6e1"; }
+
+.icon-addpeople:before { content: "\e6e2"; }
+
+.icon-browse_fill:before { content: "\e6e4"; }
+
+.icon-browse:before { content: "\e6e5"; }
+
+.icon-businesscard_fill:before { content: "\e6e6"; }
+
+.icon-businesscard:before { content: "\e6e7"; }
+
+.icon-camera_fill:before { content: "\e6e8"; }
+
+.icon-camera:before { content: "\e6e9"; }
+
+.icon-clock_fill:before { content: "\e6ea"; }
+
+.icon-clock:before { content: "\e6eb"; }
+
+.icon-collection_fill:before { content: "\e6ec"; }
+
+.icon-collection:before { content: "\e6ed"; }
+
+.icon-coordinates_fill:before { content: "\e6ee"; }
+
+.icon-coordinates:before { content: "\e6ef"; }
+
+.icon-editor:before { content: "\e6f5"; }
+
+.icon-enter:before { content: "\e6f8"; }
+
+.icon-fullscreen:before { content: "\e6fe"; }
+
+.icon-like_fill:before { content: "\e707"; }
+
+.icon-like:before { content: "\e708"; }
+
+.icon-lock_fill:before { content: "\e709"; }
+
+.icon-lock:before { content: "\e70a"; }
+
+.icon-message:before { content: "\e70c"; }
+
+.icon-message_fill:before { content: "\e70d"; }
+
+.icon-play:before { content: "\e717"; }
+
+.icon-play_fill:before { content: "\e719"; }
+
+.icon-playon_fill:before { content: "\e718"; }
+
+.icon-playon:before { content: "\e71b"; }
+
+.icon-praise_fill:before { content: "\e71c"; }
+
+.icon-praise:before { content: "\e71d"; }
+
+.icon-remind_fill:before { content: "\e71f"; }
+
+.icon-remind:before { content: "\e720"; }
+
+.icon-return:before { content: "\e721"; }
+
+.icon-right:before { content: "\e722"; }
+
+.icon-scan:before { content: "\e723"; }
+
+.icon-service_fill:before { content: "\e727"; }
+
+.icon-service:before { content: "\e728"; }
+
+.icon-share_fill:before { content: "\e729"; }
+
+.icon-share:before { content: "\e72a"; }
+
+.icon-switch:before { content: "\e72e"; }
+
+.icon-systemprompt_fill:before { content: "\e72f"; }
+
+.icon-systemprompt:before { content: "\e730"; }
+
+.icon-time_fill:before { content: "\e735"; }
+
+.icon-time:before { content: "\e736"; }
+
+.icon-trash:before { content: "\e738"; }
+
+.icon-trash_fill:before { content: "\e739"; }
+
+.icon-unlock_fill:before { content: "\e73a"; }
+
+.icon-unlock:before { content: "\e73b"; }
+
+.icon-video:before { content: "\e73c"; }
+
+.icon-video_fill:before { content: "\e73d"; }
+
+.icon-suofang:before { content: "\e63b"; }
+
+.icon-fangda:before { content: "\e63c"; }
+
+.icon-packup:before { content: "\e749"; }
+
+.icon-unfold:before { content: "\e74a"; }
+
+.icon-shake:before { content: "\e74e"; }
+
+.icon-decoration_fill:before { content: "\e74f"; }
+
+.icon-kaishiluyin:before { content: "\e600"; }

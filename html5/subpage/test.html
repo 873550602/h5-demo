@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-3.3.7.css" />
+		<script src="../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,body{
+				height: 100%;
+			}
+			body {
+				padding: 50px 20px;
+			}
+			
+			myDiv {
+				display: inline-block;
+				background: #1B6D85;
+				color: #F7ECB5;
+				padding: 12px 18px;
+				border-radius: 8px;
+			}
+			/*自定义提示标签*/
+			/*
+			 * 使用描述：
+			 * 1.在需要提示的元素上加类my-tip
+			 * 2.需要提示的内容放在data-title属性里
+			 * 3.默认提示标签时在元素上面，如果需要放在下面，再加类my-tip-bottom;
+			 * 4.特别注意，需要提示的元素需要有固定宽度
+			 * eg:<div class="my-tip" data-title="提示内容" style="width:100px;">test</div>
+			 * */
+			
+			.my-tip {
+				position: relative;
+			}
+			
+			.my-tip:before {
+				content: attr(data-title);
+				position: absolute;
+				padding: 3px 5px;
+				top: -8px;
+				left: 50%;
+				background: #383c42;
+				color: #fff;
+				font-size: 0.8em;
+				word-break: keep-all;
+				border-radius: 4px;
+				transform: translate(-50%, -100%);
+			}
+			
+			.my-tip:after {
+				content: "";
+				position: absolute;
+				top: -8px;
+				left: calc(50% - 5px);
+				border: 5px solid #383c42;
+				border-bottom: none;
+				border-left-color: transparent;
+				border-right-color: transparent;
+			}
+			
+			.my-tip.my-tip-bottom:before {
+				top: auto;
+				bottom: -8px;
+				transform: translate(-50%, 100%);
+			}
+			
+			.my-tip.my-tip-bottom:after {
+				border-top: none;
+				border-bottom: 5px solid #383c42;
+				top: auto;
+				bottom: -8px;
+			}
+			
+			.my-tip:before,
+			.my-tip:after {
+				opacity: 0;
+				-webkit-transition: opacity .7s;
+			}
+			
+			.my-tip:hover:before,
+			.my-tip:hover:after {
+				opacity: 1;
+			}
+			/*自定义提示标签*/
+			
+			.card-contain {
+				margin: 20px auto;
+				position: relative;
+				transform-style: preserve-3d;
+				width: 800px;
+				height: 600px;
+				perspective: 800px;
+				perspective-origin: 50% 42%;
+			}
+			
+			.card {
+				position: absolute;
+				top:40%;
+				left: 40%;
+				width: 128px;
+				height: 100px;
+				transition: transform 1.5s, height .5s, margin-top .5s;
+			}
+			.card:hover{
+				cursor: pointer;
+				margin-top: -28px;
+				height: 128px;
+			}
+			.card1 {
+				background: #31B0D5;
+				transform: rotateY(0deg) translateZ(220px);
+			}
+			
+			.card2 {
+				background: #03a9f4;
+				transform: rotateY(40deg) translateZ(220px);
+			}
+			
+			.card3 {
+				background: #8bc34a;
+				transform: rotateY(80deg) translateZ(220px);
+			}
+			
+			.card4 {
+				background: #4CAE4C;
+				transform: rotateY(120deg) translateZ(220px);
+			}
+			
+			.card5 {
+				background: #da70d6;
+				transform: rotateY(160deg) translateZ(220px);
+			}
+			
+			.card6 {
+				background: #9C27B0;
+				transform: rotateY(200deg) translateZ(220px);
+			}
+			
+			.card7 {
+				background: #00bcd4;
+				transform: rotateY(240deg) translateZ(220px);
+			}
+			
+			.card8 {
+				background: #ff5722;
+				transform: rotateY(280deg) translateZ(220px);
+			}
+			
+			.card9 {
+				background: #009688;
+				transform: rotateY(320deg) translateZ(220px);
+			}
+			
+			.card:hover {
+				/*transform: rotateY(360deg) translateZ(200px);*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<myDiv class="my-tip" data-title="这是一个自定义元素哦">这是一个自定义元素哦</myDiv>
+		<input type="color" class="my-tip my-tip-bottom" value="#000000" data-title="选色器" />
+		<div class="form-inline">
+			<label class="control-label">浏览器：</label>
+			<input class="form-control" list="browsers" name="browser">
+			<datalist id="browsers">
+             <option value="Internet Explorer">
+             <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+           </datalist>
+		</div>
+		<div class="my-tip" data-title="提示内容" style="width:100px;background: #ccc;">test</div>
+		<div class="card-contain">
+			<div class="card card1"> 1</div>
+			<div class="card card2"> 2</div>
+			<div class="card card3"> 3</div>
+			<div class="card card4"> 4</div>
+			<div class="card card5"> 5</div>
+			<div class="card card6"> 6</div>
+			<div class="card card7"> 7</div>
+			<div class="card card8"> 8</div>
+			<div class="card card9"> 9</div>
+		</div>
+		<script type="text/javascript">
+			var arr = [0,40,80,120,160,200,240,280,320];
+			var n = 0;
+			$(".card").click(function() {
+				n++;
+				var cards = $(".card");
+				for(i = 0; i < cards.length; i++) {
+					$(cards[i]).css('transform','rotateY('+(arr[i]+40*n)+'deg) translateZ(220px)');
+				}
+			})
+		</script>
+	</body>
+
+</html>

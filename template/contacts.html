@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var contacts = plus.contacts;
+					var phone_adress_book = null; //手机通讯录对象
+					var sim_adress_book = null; //SIM卡通讯录对象
+					//获取手机通讯对象
+					function getAddressBook() {
+						contacts.getAddressBook(contacts.ADDRESSBOOK_PHONE, function(ab) {
+							phone_adress_book = ab;
+						}, function(e) {
+							alert(e.message);
+						})
+						contacts.getAddressBook(contacts.ADDRESSBOOK_SIM, function(ab) {
+							sim_adress_book = ab;
+						}, function(e) {
+							alert(e.message);
+						})
+					}getAddressBook();
+					//获取手机通讯录
+					document.getElementById("get-phone-contacts").addEventListener('tap', function(e) {
+						if(phone_adress_book) {
+							phone_adress_book.find('', function(cons) {
+								console.log("count:" + cons.length);
+								for(i = 0; i < 10; i++) {
+									console.log(cons[i].displayName + ":" + cons[i].phoneNumbers[0].value)
+								}
+							}, function(e) {
+								alert(e.message);
+							})
+						} else {
+							getAddressBook();
+						}
+					})
+					//获取SIM卡通讯录
+					document.getElementById("get-sim-contacts").addEventListener('tap', function(e) {
+						if(sim_adress_book) {
+							sim_adress_book.find('', function(cons) {
+								console.log("count:" + cons.length);
+								for(i = 0; i < 10; i++) {
+									console.log(cons[i].name.formatted)
+								}
+							}, function(e) {
+								alert(e.message);
+							})
+						} else {
+							getAddressBook();
+						}
+					})
+					//创建联系人
+					document.getElementById("create-contact").addEventListener('tap', function(e) {
+						if(phone_adress_book) {
+							var contact = phone_adress_book.create();
+							contact.displayName = "test";
+							contact.phoneNumbers = [{
+								type: "mobile",
+								value: "11122233333",
+								preferred: true
+							}, {
+								type: 'mobile',
+								value: '21654646464684'
+							}];
+							contact.save();
+							alert('create contact success!');
+						} else {
+							getAddressBook();
+						}
+					})
+					//克隆联系人
+					document.getElementById("clone-contact").addEventListener('tap', function(e) {
+						phone_adress_book.find('', function(cons) {
+							var newcns = cons[0].clone();
+							newcns.save();
+							alert('clone contact success!');
+						}, function(e) {
+							alert(e.message);
+						},{filter:[{logic:"or",field:"displayNam",value:"test"},{logic:"or",field:"nickname",value:"test"}]})
+					})
+					//删除联系人
+					document.getElementById("delete-contact").addEventListener('tap', function(e) {
+						if(phone_adress_book) {
+							phone_adress_book.find(['displayName'], function(cons) {
+								if(cons != 0){
+									cons[0].remove(function (){
+										alert("Remove test success!");
+									},function (e){
+										alert(e.message);
+									})
+								}else{
+									alert('not find any contact!');
+								}
+							}, function(e) {
+								alert(e.message);
+							},{filter:[{logic:"or",field:"displayNam",value:"test"},{logic:"or",field:"nickname",value:"test"}],multiple:false})
+						} else {
+							getAddressBook();
+						}
+					})
+				})
+			})(mui)
+		</script>
+		<style type="text/css">
+			.btn-group {
+				margin: 10px auto;
+				padding: 8px 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">通讯录</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button id="get-phone-contacts" type="button" class="mui-btn mui-btn-yellow mui-btn-block">获取手机和通讯录</button>
+				<button id="get-sim-contacts" type="button" class="mui-btn mui-btn-yellow mui-btn-block">获取SIM卡和通讯录</button>
+				<button id="create-contact" type="button" class="mui-btn mui-btn-yellow mui-btn-block">创建联系人</button>
+				<button id="clone-contact" type="button" class="mui-btn mui-btn-yellow mui-btn-block">克隆联系人</button>
+				<button id="delete-contact" type="button" class="mui-btn mui-btn-yellow mui-btn-block">删除联系人</button>
+			</div>
+		</div>
+	</body>
+
+</html>

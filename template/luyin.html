@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_extra_icon.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			#stop-record {
+				position: fixed;
+				margin-left: -25px;
+				width: 50px;
+				height: 50px;
+				left: 50%;
+				bottom: 50px;
+				border-radius: 50px;
+				border: 2px solid lightgrey;
+				box-shadow: 0 0 2px silver;
+				background: ghostwhite;
+			}
+			.icon-1 {
+				line-height: 47px;
+				margin-left: 11px;
+				font-size: 1.5em;
+				color: indianred;
+			}
+			#timer{
+				margin-top: 50%;
+				text-align: center;
+				font-size: 2.0em;
+				color: aquamarine;
+			}
+		</style>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var audio = plus.audio;
+					var io = plus.io;
+					//获取录音对象
+					var ar = audio.getRecorder();
+					//开始录音
+					function startRecord() {
+						var el = document.getElementById("timer");
+						if(ar == null) {
+							alert("Device not ready!");
+							return;
+						}
+						timer.startTimer(el);
+						ar.record({
+							filename: '_doc/audio/'
+						}, function() {
+							alert("Audio record success!");
+						}, function(e) {
+							alert("Audio record failed:" + e.message);
+						})
+					}startRecord();
+					//开始或停止录音
+					document.getElementById("stop-record").addEventListener("tap", function(e) {
+						ar.stop();
+						timer.stopTimer();
+					})
+				})
+			})(mui);
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">录音</h1>
+		</header>
+		<div class="mui-content">
+			<div id="timer">00:00:00</div>
+		</div>
+		<div id="stop-record">
+			<span class="iconfont icon-1"></span>
+		</div>
+	</body>
+
+</html>

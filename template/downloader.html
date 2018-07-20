@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var downloader = plus.downloader;
+					function init() {
+						
+					}init();
+					document.getElementById("download-task").addEventListener('tap',function (e){
+						var dtask = downloader.createDownload("https://imgstat.baidu.com/9.gif", {}, function(d, status) {
+							// 下载完成
+							if(status == 200) {
+								alert("Download success: " + d.filename);
+							} else {
+								alert("Download failed: " + status);
+							}
+						});
+						//dtask.addEventListener( "statechanged", onStateChanged, false );
+						dtask.start();
+					})
+				})
+			})(mui)
+		</script>
+		<style type="text/css">
+			.btn-group {
+				margin: 10px auto;
+				padding: 8px 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">下载任务</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button id="download-task" type="button" class="mui-btn mui-btn-yellow mui-btn-block">新建下载任务</button>
+				<!--<button id="screen-info" type="button" class="mui-btn mui-btn-yellow mui-btn-block">设备屏幕信息</button>
+				<button id="display-info" type="button" class="mui-btn mui-btn-yellow mui-btn-block">显示区域信息</button>
+				<button id="os-info" type="button" class="mui-btn mui-btn-yellow mui-btn-block">操作系统信息</button>
+				<button id="call" type="button" class="mui-btn mui-btn-yellow mui-btn-block">拨打10086</button>
+				<button id="start-beep" type="button" class="mui-btn mui-btn-yellow mui-btn-block">发出蜂鸣声</button>
+				<button id="start-vibrate" type="button" class="mui-btn mui-btn-yellow mui-btn-block">设备振动</button>-->
+			</div>
+		</div>
+	</body>
+
+</html>

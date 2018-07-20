@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var barcode = plus.barcode;
+					var scan = null;
+					var isFlash = true;
+					$(".btn-group").on("tap", '.btn-scan', function(e) {
+						barcode.scan('_www/img/QR1.jpg', function(type, result) {
+							alert("Scan success:(" + type + ")" + result);
+						}, function(e) {
+							alert(e.message);
+						})
+					})
+					document.getElementById("create-scan").addEventListener('tap',function (e){
+						if(!scan){
+							scan = new barcode.Barcode('bcid');
+							scan.onmarked = onmarked;
+						}
+					})
+					function onmarked(type, result) {
+						var text = '未知: ';
+						switch(type) {
+							case plus.barcode.QR:
+								text = 'QR: ';
+								break;
+							case plus.barcode.EAN13:
+								text = 'EAN13: ';
+								break;
+							case plus.barcode.EAN8:
+								text = 'EAN8: ';
+								break;
+						}
+						alert(text + result);
+					}
+					document.getElementById("start-scan").addEventListener("tap",function (e){
+						scan.start();
+					})
+					document.getElementById("cancel-scan").addEventListener('tap',function (e){
+						scan.cancel();
+					})
+					document.getElementById("close-scan").addEventListener('tap',function (e){
+						scan.close();
+					})
+					document.getElementById("toggle-flash").addEventListener('tap',function (e){
+						isFlash = !isFlash;
+						scan.setFlash(isFlash);
+					})
+					function onPlusReady() {
+						var e = document.getElementById("scan");
+						e.removeAttribute("disabled");
+					}
+					var scan = null;
+
+
+					function startScan() {
+						scan.start();
+					}
+
+					function cancelScan() {
+						scan.cancel();
+					}
+
+					function setFlash() {
+						scan.setFlash();
+					}
+				})
+			})(mui)
+		</script>
+		<style type="text/css">
+			.btn-group {
+				margin-top: 10px;
+				padding: 0 30px;
+			}
+			.btn-group button{
+				margin: 3px;
+				padding:5px 10px;
+			}
+			* {
+				-webkit-user-select: none;
+			}
+			
+			html,
+			body {
+				margin: 0px;
+				padding: 0px;
+				height: 100%;
+			}
+			
+			#bcid {
+				background: #0F0;
+				height: 330px;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">条码</h1>
+		</header>
+		<div class="mui-content">
+			<div class="btn-group">
+				<button type="button" class="mui-btn mui-btn-red mui-btn-block btn-scan">识别图片二维码</button>
+				<button id="create-scan" type="button" class="mui-btn mui-btn-red mui-btn-block">创建扫描控件</button>
+				<button id="start-scan" type="button" class="mui-btn mui-btn-red mui-btn-block">开始扫描</button>
+				<button id="cancel-scan" type="button" class="mui-btn mui-btn-red mui-btn-block">取消扫描</button>
+				<button id="close-scan" type="button" class="mui-btn mui-btn-red mui-btn-block">关闭扫描控件</button>
+				<button id="toggle-flash" type="button" class="mui-btn mui-btn-red mui-btn-block">开启/关闭闪光灯</button>
+			</div>
+		</div>
+		<div id="bcid"></div>
+		<input type='text' id='text' />
+	</body>
+
+</html>

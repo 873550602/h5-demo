@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commom.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/my_extra_icon.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			#player-page {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.9);
+				display: none;
+				z-index: 99;
+			}
+			
+			#play-time {
+				margin-top: 50%;
+				text-align: center;
+				color: red;
+				font-size: 2.0em;
+			}
+			
+			#play-name {
+				margin-top: 10px;
+				margin-left: 5px;
+				color: antiquewhite;
+				font-size: 1.2em;
+			}
+			
+			.paule-resume {
+				position: absolute;
+				margin-left: -30px;
+				/*padding-top: 12px;
+				padding-left: 8px;*/
+				left: 50%;
+				bottom: 40px;
+				width: 45px;
+				height: 45px;
+				border-radius: 40px;
+				border: 2px solid whitesmoke;
+				background: slategray;
+			}
+			
+			.paule-resume .icon-play_fill {
+				font-size: 1.8em;
+				margin-left: 7px;
+				line-height: 40px;
+				color: mediumseagreen;
+			}
+			
+			.icon-zanting {
+				margin-left: 8px;
+				line-height: 43px;
+				font-size: 1.5em;
+				color: indianred;
+			}
+			
+			.start-record {
+				width: 50px;
+				height: 50px;
+				border-radius: 50px;
+			}
+			
+			#start-record{
+				position: fixed;
+				margin-left: -38px;
+				width: 50px;
+				height: 50px;
+				left: 50%;
+				bottom: 50px;
+				border-radius: 50px;
+				border: 2px solid lightgrey;
+				box-shadow: 0 0 2px silver; 
+				background: ghostwhite;
+			}
+			#start-record .icon-kaishiluyin{
+				margin-left: 3.5px;
+				line-height: 46px;
+				font-size: 40px;
+				color: indianred;
+			}
+			.icon-playon {
+				font-size: 1.8em;
+				color: lightslategray;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.plusReady(function() {
+					var hour, min, sec, sint;
+					hour = min = sec = 0;
+					var audio = plus.audio;
+					var io = plus.io;
+					//音频对象
+					var ap = null;
+					//录音文件名
+					var record_name = null;
+					
+					//获取录音文件
+					function getRecords() {
+						io.requestFileSystem(io.PRIVATE_DOC, function(fs) {
+							fs.root.getDirectory('audio', {
+								create: true,
+								exclusive: false
+							}, function(dir) {
+								var dr = dir.createReader();
+								dr.readEntries(function(entries) {
+									var str = '';
+									for(i = 0; i < entries.length; i++) {
+										str = str + '<li class="mui-table-view-cell mui-transitioning">\
+								    <div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red delete-record">删除</a></div>\
+								    <div class="mui-slider-handle">'+ entries[i].name +'<span class="iconfont icon-playon mui-pull-right">\
+										</span></div></li>';
+										document.getElementById("record-list").innerHTML = str;
+									}
+								}, function(e) {
+									alert(e.message)
+								})
+							}, function(e) {
+								alert(e.message);
+							})
+						}, function(e) {
+							alert(e.message)
+						})
+					}getRecords();
+					//开始播放录音
+					$('#record-list').on('tap', 'li', function(e) {
+						var pt = document.getElementById("play-time");
+						record_name = this.children[1].innerText;
+						ap = audio.createPlayer("_doc/audio/" + record_name);
+						document.getElementById("player-page").style.display = 'block';
+						document.getElementById("play-name").innerText = record_name;
+						timer.startTimer(pt);
+						ap.play(function() {
+							alert("Audio play success!");
+						}, function(e) {
+							alert("Audio play failed" + e.message);
+						});
+					})
+					//暂停/回复播放
+					$('#player-page').on('tap', '.paule-resume', function(e) {
+						var cls = this.children[0].classList;
+						if(cls.contains('icon-zanting')) {
+							cls.remove('icon-zanting');
+							cls.add('icon-play_fill');
+							//暂停
+
+						} else {
+							cls.remove('icon-play_fill');
+							cls.add('icon-zanting');
+							//恢复
+						}
+					})
+					//删除录音
+					$("#record-list").on('tap','.delete-record',function (e){
+						var ul = this.parentElement.parentElement.parentElement;
+						var li = this.parentElement.parentElement;
+						io.requestFileSystem(io.PRIVATE_DOC,function (fs){
+							fs.root.getDirectory('audio',{create:true,exclusive:false},function (dir){
+								var dr = dir.createReader();
+								dr.readEntries(function (entries){
+									for(i=0;i<entries.length;i++){
+										if(entries[i].name == li.children[1].innerText){
+											entries[i].remove();
+											ul.removeChild(li);
+											return ;
+										}
+									}
+								})
+							},function (e){
+								alert(e.message);
+							})
+						},function (e){
+							alert(e.message)
+						})
+//						ul.removeChild(li);
+					})
+				})
+			})(mui);
+			//			window.onload = function (){
+			//				document.getElementsByClassName('paule-resume')[0].addEventListener('tap',function (e){
+			//						console.log();
+			//					})
+			//			}
+		</script>
+	</head>
+
+	<body>
+		<div id="player-page">
+			<div id="play-name"></div>
+			<div id="play-img"></div>
+			<div id="play-time"></div>
+			<div class="paule-resume">
+				<span class="iconfont icon-zanting"></span>
+			</div>
+		</div>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">录音</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="record-list" class="mui-table-view"></ul>
+		</div>
+		<div id="start-record">
+			<a href="luyin.html" class="iconfont icon-kaishiluyin"></a>
+		</div>
+	</body>
+</html>
